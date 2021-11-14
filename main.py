@@ -49,6 +49,7 @@ class Window(QMainWindow, mainWindowDesign):
         self.familyMembers = tuple(map(lambda x: x[1:], self.cursor.execute(
             '''select * from familyMembers''')))
         self.events = tuple(self.cursor.execute('''select * from events'''))
+        self.calendarWidget.updateDB()
 
     # page 1
     def addFamilyMemberClicked(self):
