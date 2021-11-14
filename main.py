@@ -133,7 +133,7 @@ values({list(filter(lambda x: x[0] == self.familyMembersComboBox.currentText(), 
 
 def show_notification(title='Событие', message='Событие случилось'):
     plyer.notification.notify(message=message, app_name='Семейный календарь',
-                              app_icon='Phoros/bell.ico', title=title)
+                              app_icon='Photos/bell.ico', title=title)
 
 
 if __name__ == '__main__':
