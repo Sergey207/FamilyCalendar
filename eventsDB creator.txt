@@ -1,0 +1,28 @@
+--
+-- Файл сгенерирован с помощью SQLiteStudio v3.3.3 в Чт ноя 4 16:18:29 2021
+--
+-- Использованная кодировка текста: System
+--
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+-- Таблица: colors
+CREATE TABLE colors (id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE NOT NULL, Red INTEGER NOT NULL CHECK (Red >= 0 and Red <= 255), Green INTEGER NOT NULL CHECK (Green >= 0 and Green <= 255), Blue INTEGER NOT NULL CHECK (Blue >= 0 and Blue <= 255), name STRING UNIQUE NOT NULL);
+INSERT INTO colors (id, Red, Green, Blue, name) VALUES (1, 255, 0, 0, 'Красный');
+INSERT INTO colors (id, Red, Green, Blue, name) VALUES (2, 255, 255, 255, 'Белый');
+INSERT INTO colors (id, Red, Green, Blue, name) VALUES (3, 0, 0, 0, 'Чёрный');
+INSERT INTO colors (id, Red, Green, Blue, name) VALUES (4, 0, 0, 255, 'Синий');
+INSERT INTO colors (id, Red, Green, Blue, name) VALUES (5, 0, 255, 0, 'Зелёный');
+INSERT INTO colors (id, Red, Green, Blue, name) VALUES (6, 255, 0, 255, 'Фиолетовый');
+INSERT INTO colors (id, Red, Green, Blue, name) VALUES (7, 255, 255, 0, 'Жёлтый');
+
+-- Таблица: familyMembers
+CREATE TABLE familyMembers (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, name STRING NOT NULL, color INTEGER REFERENCES colors (id) MATCH SIMPLE NOT NULL);
+INSERT INTO familyMembers (id, name, color) VALUES (1, 'Я', 1);
+INSERT INTO familyMembers (id, name, color) VALUES (2, 'Бабушка', 6);
+INSERT INTO familyMembers (id, name, color) VALUES (3, 'Папа', 4);
+INSERT INTO familyMembers (id, name, color) VALUES (4, 'Мама', 2);
+INSERT INTO familyMembers (id, name, color) VALUES (5, 'Брат', 5);
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;
