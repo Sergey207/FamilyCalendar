@@ -4,14 +4,13 @@ import sys
 
 import plyer
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import QTime, QDate, QRect
-from PyQt5.QtGui import QPainter
-from PyQt5.QtWidgets import QMainWindow, QApplication, QCalendarWidget, QMessageBox
+from PyQt5.QtCore import QTime, QDate
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 
-from addFamilyMemberDialog import addFamilyMemberDialog
-from changeColorFamilyMemberDialog import changeColorFamilyMemberDialog
-from design import Ui_MainWindow as mainWindowDesign
-from removeFamilyMemberDialog import removeFamilyMemberDialog
+from DialogsDesigns.addFamilyMemberDialog import addFamilyMemberDialog
+from DialogsDesigns.changeColorFamilyMemberDialog import changeColorFamilyMemberDialog
+from DialogsDesigns.design import Ui_MainWindow as mainWindowDesign
+from DialogsDesigns.removeFamilyMemberDialog import removeFamilyMemberDialog
 
 
 class Window(QMainWindow, mainWindowDesign):

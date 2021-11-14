@@ -10,10 +10,10 @@ class changeColorFamilyMemberDialog(QDialog, Ui_Dialog):
         super().__init__()
         self.setupUi(self)
         self.comboBox.addItems(list(map(lambda x: x[0],
-                                        sqlite3.connect('events.db').cursor().execute(
+                                        sqlite3.connect('../events.db').cursor().execute(
                                             '''select name from familyMembers'''))))
         self.colors = list(
-            sqlite3.connect('events.db').cursor().execute(
+            sqlite3.connect('../events.db').cursor().execute(
                 '''select Red, Green, Blue from colors'''))
         self.chooseColor.clicked.connect(self.onChooseColorClicked)
         self.changeColor.clicked.connect(self.onChangeColorClicked)
@@ -31,7 +31,7 @@ class changeColorFamilyMemberDialog(QDialog, Ui_Dialog):
             dlg.setText('Цвет не выбран')
             dlg.exec()
         else:
-            con = sqlite3.connect('events.db')
+            con = sqlite3.connect('../events.db')
             cur = con.cursor()
             if self.color not in self.colors:
                 cur.execute(f'''insert into colors(red, green, blue)

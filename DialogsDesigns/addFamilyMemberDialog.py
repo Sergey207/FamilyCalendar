@@ -11,9 +11,9 @@ class addFamilyMemberDialog(QDialog, addFamilyMemberDialogDesign):
         self.setupUi(self)
         self.color = None
         self.colors = list(
-            sqlite3.connect("events.db").cursor().execute('''select * from colors'''))
+            sqlite3.connect("../events.db").cursor().execute('''select * from colors'''))
         self.familyMembers = list(map(lambda x: x[0], sqlite3.connect(
-            'events.db').cursor().execute(
+            '../events.db').cursor().execute(
             '''select name from familyMembers''')))
         self.chooseColor.clicked.connect(self.onChooseColorClicked)
         self.addMember.clicked.connect(self.onAddMemberClicked)
@@ -45,7 +45,7 @@ class addFamilyMemberDialog(QDialog, addFamilyMemberDialogDesign):
             dlg.exec()
         else:
             try:
-                connection = sqlite3.connect("events.db")
+                connection = sqlite3.connect("../events.db")
                 cursor = connection.cursor()
 
                 if self.color not in tuple(map(lambda x: x[2:], self.colors)):
