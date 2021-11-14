@@ -9,14 +9,14 @@ class addFamilyMemberDialog(QDialog, addFamilyMemberDialogDesign):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.color = None
-        self.colors = list(
-            sqlite3.connect("../events.db").cursor().execute('''select * from colors'''))
-        self.familyMembers = list(map(lambda x: x[0], sqlite3.connect(
-            '../events.db').cursor().execute(
-            '''select name from familyMembers''')))
         self.chooseColor.clicked.connect(self.onChooseColorClicked)
         self.addMember.clicked.connect(self.onAddMemberClicked)
+
+        self.colorID = None
+        self.con = sqlite3.connect('events.db')
+        self.cur = self.con.cursor()
+        self.familyMembers = list(
+            map(lambda x: x[0], self.cur.execute('''select name from familyMembers''')))
 
     def onChooseColorClicked(self):
         self.color = QColorDialog.getColor().toRgb().getRgb()[:-1]
@@ -45,20 +45,18 @@ class addFamilyMemberDialog(QDialog, addFamilyMemberDialogDesign):
             dlg.exec()
         else:
             try:
-                connection = sqlite3.connect("../events.db")
-                cursor = connection.cursor()
-
-                if self.color not in tuple(map(lambda x: x[2:], self.colors)):
-                    cursor.execute(f'''insert into colors(red, green, blue) 
+                if self.color not in tuple(
+                        self.cur.execute('''select Red, Green, Blue from colors''')):
+                    self.cur.execute(f'''insert into colors(red, green, blue)
                     values({self.color[0]}, {self.color[1]}, {self.color[2]})''')
-                    connection.commit()
+                    self.con.commit()
 
-                color = list(cursor.execute(f'''select id from colors where
+                self.colorID = list(self.cur.execute(f'''select id from colors where
                 Red = {self.color[0]} and Green = {self.color[1]} and Blue = {self.color[2]}'''))[
                     0][0]
-                cursor.execute(f'''insert into familyMembers(name, color) 
-                        values("{self.nameLabel.text()}", {color})''')
-                connection.commit()
+                self.cur.execute(f'''insert into familyMembers(name, color)
+                        values("{self.nameLabel.text()}", {self.colorID})''')
+                self.con.commit()
                 self.close()
             except Exception as e:
                 print(e)

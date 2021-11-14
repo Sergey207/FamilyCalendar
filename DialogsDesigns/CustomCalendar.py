@@ -12,7 +12,7 @@ class CustomCalendar(QCalendarWidget):
         self.setStyleSheet('''font-size: 18px;''')
 
     def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
-        print('Drawing cell...')
+        # print('Drawing cell...')
         if self.monthShown() == date.month():
             painter.setPen(self.blackColor)
         else:

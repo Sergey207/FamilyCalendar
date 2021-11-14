@@ -13,7 +13,6 @@ from DialogsDesigns.design import Ui_MainWindow as mainWindowDesign
 from DialogsDesigns.removeFamilyMemberDialog import removeFamilyMemberDialog
 
 
-
 class Window(QMainWindow, mainWindowDesign):
     def __init__(self):
         super().__init__()
@@ -55,7 +54,7 @@ class Window(QMainWindow, mainWindowDesign):
     def addFamilyMemberClicked(self):
         dlg = addFamilyMemberDialog()
         dlg.exec()
-        if dlg.color is not None:
+        if dlg.colorID is not None:
             self.updateFamilyMembersCheckBoxes()
 
     def onChangeColorFamilyMemberClicked(self):
@@ -75,11 +74,9 @@ class Window(QMainWindow, mainWindowDesign):
             time_now = datetime.datetime.now().time()
             date_now = datetime.datetime.now().date()
             self.dateTimeEdit.setTime((QTime(time_now.hour, time_now.minute)))
-            self.dateTimeEdit.setDate(
-                (QDate(date_now.year, date_now.month, date_now.day)))
+            self.dateTimeEdit.setDate((QDate(date_now.year, date_now.month, date_now.day)))
             self.familyMembersComboBox.clear()
-            self.familyMembersComboBox.addItems(
-                tuple(map(lambda x: x[0], self.familyMembers)))
+            self.familyMembersComboBox.addItems(tuple(map(lambda x: x[0], self.familyMembers)))
         except BaseException as e:
             print(e)
 
@@ -111,7 +108,6 @@ padding: 6px;''')
     def onRadioButtonClicked(self):
         self.dateComboBox.setEnabled(False if self.sender() == self.radioButton else True)
         self.dateTimeEdit.setEnabled(False if self.sender() == self.radioButton else True)
-        print(self.familyMembers)
 
     def addEvent(self):
         if self.titleEdit.text() == '':
