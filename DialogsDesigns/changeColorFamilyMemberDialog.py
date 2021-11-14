@@ -2,7 +2,7 @@ import sqlite3
 
 from PyQt5.QtWidgets import QDialog, QColorDialog, QMessageBox
 
-from changeColorFamilyMember import Ui_Dialog
+from DialogsDesigns.changeColorFamilyMember import Ui_Dialog
 
 
 class changeColorFamilyMemberDialog(QDialog, Ui_Dialog):

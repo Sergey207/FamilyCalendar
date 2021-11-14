@@ -2,7 +2,7 @@ import sqlite3
 
 from PyQt5.QtWidgets import QDialog, QColorDialog, QMessageBox
 
-from addFamilyMember import Ui_Dialog as addFamilyMemberDialogDesign
+from DialogsDesigns.addFamilyMember import Ui_Dialog as addFamilyMemberDialogDesign
 
 
 class addFamilyMemberDialog(QDialog, addFamilyMemberDialogDesign):

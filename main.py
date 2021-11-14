@@ -3,7 +3,7 @@ import sqlite3
 import sys
 
 import plyer
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import QTime, QDate
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 
@@ -13,6 +13,7 @@ from DialogsDesigns.design import Ui_MainWindow as mainWindowDesign
 from DialogsDesigns.removeFamilyMemberDialog import removeFamilyMemberDialog
 
 
+
 class Window(QMainWindow, mainWindowDesign):
     def __init__(self):
         super().__init__()
@@ -20,9 +21,7 @@ class Window(QMainWindow, mainWindowDesign):
 
     def setupUI(self):
         self.setupUi(self)
-        # self.calendar = MyCalendar(self.page.)
-        # self.calendar = QCalendarWidget(self.page)
-        # self.page TODO TODO
+
         self.checkBoxes = []
         self.stackedWidget.setCurrentIndex(0)
         self.updateFamilyMembersCheckBoxes()
@@ -138,7 +137,7 @@ values({list(filter(lambda x: x[0] == self.familyMembersComboBox.currentText(), 
 
 def show_notification(title='Событие', message='Событие случилось'):
     plyer.notification.notify(message=message, app_name='Семейный календарь',
-                              app_icon='bell.ico', title=title)
+                              app_icon='Phoros/bell.ico', title=title)
 
 
 if __name__ == '__main__':

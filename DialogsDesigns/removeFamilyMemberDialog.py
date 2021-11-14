@@ -2,7 +2,7 @@ import sqlite3
 
 from PyQt5.QtWidgets import QDialog
 
-from removeFamilyMember import Ui_Dialog
+from DialogsDesigns.removeFamilyMember import Ui_Dialog
 
 
 class removeFamilyMemberDialog(QDialog, Ui_Dialog):
