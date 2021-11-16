@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'design.ui'
+# Form implementation generated from reading ui file '.\DialogsDesigns\design.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -273,32 +273,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setStretch(1, 1)
         self.horizontalLayout_4.setStretch(2, 3)
         self.verticalLayout_3.addLayout(self.horizontalLayout_4)
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                            QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem9)
-        self.rememberEventCheckBox = QtWidgets.QCheckBox(self.page_2)
-        self.rememberEventCheckBox.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                                 "    border-style: outset;\n"
-                                                 "    border-width: 2px;\n"
-                                                 "    border-radius: 10px;\n"
-                                                 "    border-color: rgb(0, 0, 0);\n"
-                                                 "    font: bold 14px;\n"
-                                                 "    min-width: 10em;\n"
-                                                 "    padding: 6px;")
-        self.rememberEventCheckBox.setChecked(True)
-        self.rememberEventCheckBox.setObjectName("rememberEventCheckBox")
-        self.horizontalLayout_6.addWidget(self.rememberEventCheckBox)
-        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                             QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem10)
-        self.verticalLayout_3.addLayout(self.horizontalLayout_6)
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                             QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem11)
+        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
+                                            QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem9)
         self.dateTimeEdit = QtWidgets.QDateTimeEdit(self.page_2)
         self.dateTimeEdit.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
                                         "    border-style: outset;\n"
@@ -321,15 +300,15 @@ class Ui_MainWindow(object):
                                         "    padding: 6px;")
         self.dateComboBox.setObjectName("dateComboBox")
         self.horizontalLayout_5.addWidget(self.dateComboBox)
-        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
+        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
                                              QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem12)
+        self.horizontalLayout_5.addItem(spacerItem10)
         self.verticalLayout_3.addLayout(self.horizontalLayout_5)
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
+        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
                                              QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_7.addItem(spacerItem13)
+        self.horizontalLayout_7.addItem(spacerItem11)
         self.label_3 = QtWidgets.QLabel(self.page_2)
         self.label_3.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
                                    "    border-style: outset;\n"
@@ -352,15 +331,15 @@ class Ui_MainWindow(object):
                                                  "    padding: 6px;")
         self.familyMembersComboBox.setObjectName("familyMembersComboBox")
         self.horizontalLayout_7.addWidget(self.familyMembersComboBox)
-        spacerItem14 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
+        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
                                              QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_7.addItem(spacerItem14)
+        self.horizontalLayout_7.addItem(spacerItem12)
         self.verticalLayout_3.addLayout(self.horizontalLayout_7)
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-        spacerItem15 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
+        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
                                              QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_8.addItem(spacerItem15)
+        self.horizontalLayout_8.addItem(spacerItem13)
         self.addButton = QtWidgets.QPushButton(self.page_2)
         self.addButton.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
                                      "    border-style: outset;\n"
@@ -383,14 +362,14 @@ class Ui_MainWindow(object):
                                         "    padding: 6px;")
         self.cancelButton.setObjectName("cancelButton")
         self.horizontalLayout_8.addWidget(self.cancelButton)
-        spacerItem16 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
+        spacerItem14 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
                                              QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_8.addItem(spacerItem16)
+        self.horizontalLayout_8.addItem(spacerItem14)
         self.verticalLayout_3.addLayout(self.horizontalLayout_8)
-        spacerItem17 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum,
+        spacerItem15 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum,
                                              QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_3.addItem(spacerItem17)
-        self.verticalLayout_3.setStretch(9, 2)
+        self.verticalLayout_3.addItem(spacerItem15)
+        self.verticalLayout_3.setStretch(8, 2)
         self.verticalLayout_2.addLayout(self.verticalLayout_3)
         self.stackedWidget.addWidget(self.page_2)
         self.horizontalLayout.addWidget(self.stackedWidget)
@@ -413,7 +392,6 @@ class Ui_MainWindow(object):
         self.radioButton_2.setText(_translate("MainWindow", "Регулярное"))
         self.label_2.setText(_translate("MainWindow", "Загаловок события"))
         self.label.setText(_translate("MainWindow", "Текст события"))
-        self.rememberEventCheckBox.setText(_translate("MainWindow", "Напоминать о событии"))
         self.label_3.setText(_translate("MainWindow", "К какому члену семьи событие относится"))
         self.addButton.setText(_translate("MainWindow", "Добавить"))
         self.cancelButton.setText(_translate("MainWindow", "Отмена"))

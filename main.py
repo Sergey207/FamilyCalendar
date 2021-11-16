@@ -20,6 +20,7 @@ class Window(QMainWindow, mainWindowDesign):
 
     def setupUI(self):
         self.setupUi(self)
+        self.setMinimumSize(1024, 768)
 
         self.checkBoxes = []
         self.stackedWidget.setCurrentIndex(0)
@@ -37,6 +38,8 @@ class Window(QMainWindow, mainWindowDesign):
         self.typesOfRegular = tuple(
             map(lambda x: x[0], self.cursor.execute('''select title from typesOfRegular''')))
         self.dateComboBox.addItems(self.typesOfRegular)
+        self.titleEdit.textChanged.connect(
+            lambda: self.titleEdit.setText(self.titleEdit.text()[:19]))
         self.cancelButton.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
         self.addButton.clicked.connect(self.addEvent)
         self.radioButton.click()
@@ -108,7 +111,6 @@ padding: 6px;''')
     # page 2
     def onRadioButtonClicked(self):
         self.dateComboBox.setEnabled(False if self.sender() == self.radioButton else True)
-        self.dateTimeEdit.setEnabled(False if self.sender() == self.radioButton else True)
 
     def addEvent(self):
         if self.titleEdit.text() == '':
@@ -123,7 +125,7 @@ padding: 6px;''')
                 self.cursor.execute(
                     f'''insert into events(familyMember, isEventRegular, title, text, date)
 values({list(filter(lambda x: x[0] == self.familyMembersComboBox.currentText(), f_m))
-                    [0][1]}, "false", "{self.titleEdit.text()}", "{self.textEdit.text()}", 
+                    [0][1]},0 , "{self.titleEdit.text()}", "{self.textEdit.text()}", 
 "{date.day()}.{date.month()}.{date.year()}")''')
             self.connection.commit()
             self.stackedWidget.setCurrentIndex(0)
