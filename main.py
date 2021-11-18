@@ -7,6 +7,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtCore import QTime, QDate
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 
+from DialogsDesigns.deleteEventDialog import deleteEventDialog
 from DialogsDesigns.addFamilyMemberDialog import addFamilyMemberDialog
 from DialogsDesigns.changeColorFamilyMemberDialog import changeColorFamilyMemberDialog
 from DialogsDesigns.design import Ui_MainWindow as mainWindowDesign
@@ -44,8 +45,6 @@ class Window(QMainWindow, mainWindowDesign):
 
         self.dateComboBox.addItems(self.typesOfRegular.values())
         self.dateComboBox.setCurrentIndex(len(self.typesOfRegular) - 1)
-        self.titleEdit.textChanged.connect(
-            lambda: self.titleEdit.setText(self.titleEdit.text()[:19]))
         self.addButton.clicked.connect(self.addEvent)
         self.cancelButton.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
 
@@ -113,7 +112,14 @@ padding: 6px;''')
         print('To Excel Button clicked')  # TODO
 
     def onDeleteEventButtonClicked(self):
-        print("Delete Event Button Clicked")
+        try:
+            dlg = deleteEventDialog()
+            dlg.exec()
+            self.updateDB()
+            self.calendarWidget.updateDB()
+            self.calendarWidget.repaint()
+        except BaseException as e:
+            print(e)
 
     # page 2
     def addEvent(self):
@@ -126,13 +132,9 @@ padding: 6px;''')
             try:
                 f_m = tuple(self.cur.execute(f'''select id from familyMembers 
                 where name = "{self.familyMembersComboBox.currentText()}"'''))[0][0]
-                print(f_m)
                 t_o_r = tuple(self.cur.execute(f'''select id from typesOfRegular 
                 where title = "{self.dateComboBox.currentText()}"'''))[0][0]
-                print(t_o_r)
                 date = self.dateTimeEdit.date()
-                print(f'''insert into events values({f_m}, {t_o_r}, "{self.titleEdit.text()}", 
-                    "{self.textEdit.text()}", "{date.day()}.{date.month()}.{date.year()}")''')
                 self.cur.execute(
                     f'''insert into events values({f_m}, {t_o_r}, "{self.titleEdit.text()}", 
                     "{self.textEdit.text()}", "{date.day()}.{date.month()}.{date.year()}")''')

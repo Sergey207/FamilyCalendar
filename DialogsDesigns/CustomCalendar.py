@@ -28,7 +28,6 @@ class CustomCalendar(QCalendarWidget):
                              QDate(int(i[4].split('.')[2]), int(i[4].split('.')[1]),
                                    int(i[4].split('.')[0]))) for i in
                             self.cur.execute('''select * from events'''))
-        print(self.events)
 
     def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
         new_line_simbols = ''
@@ -47,9 +46,17 @@ class CustomCalendar(QCalendarWidget):
 
             for color, t_o_r, title in map(lambda x: x[:-1],
                                            filter(lambda x: x[-1] == date, self.events)):
+                parts_of_title = []
+                while True:
+                    if len(title) <= 19:
+                        parts_of_title.append(title)
+                        break
+                    parts_of_title.append(title[:19])
+                    title = title[19:]
+                title = '\n'.join(parts_of_title)
                 painter.setPen(QColor(*color))
                 painter.setFont(self.littleFont)
                 painter.drawText(rect, 1, f'{new_line_simbols}{title}')
-                new_line_simbols += '\n'
+                new_line_simbols += '\n' * len(parts_of_title)
         except BaseException as e:
             print(e)
