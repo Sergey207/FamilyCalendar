@@ -51,7 +51,7 @@
          <widget class="QCalendarWidget" name="calendarWidget"/>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,0,0,0,0,0,0,0,0">
+         <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,0,0,0,0,0,0,0">
           <item>
            <spacer name="verticalSpacer">
             <property name="orientation">
@@ -203,26 +203,6 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="changeEventButton">
-            <property name="styleSheet">
-             <string notr="true">    background-color: rgb(156, 231, 255);
-    border-style: outset;
-    border-width: 2px;
-    border-radius: 10px;
-    border-color: rgb(0, 0, 0);
-    font: bold 14px;
-    min-width: 10em;
-    padding: 6px;</string>
-            </property>
-            <property name="text">
-             <string>Изменить события</string>
-            </property>
-            <property name="flat">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="deleteEventButton">
             <property name="styleSheet">
              <string notr="true">    background-color: rgb(156, 231, 255);
@@ -235,7 +215,7 @@
     padding: 6px;</string>
             </property>
             <property name="text">
-             <string>Удалить события</string>
+             <string>Удалить событие</string>
             </property>
             <property name="flat">
              <bool>true</bool>

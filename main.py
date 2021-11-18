@@ -35,6 +35,7 @@ class Window(QMainWindow, mainWindowDesign):
         self.updateFamilyMembersCheckBoxes()
 
         self.addEventButton.clicked.connect(self.onAddEventButtonClicked)
+        self.deleteEventButton.clicked.connect(self.onDeleteEventButtonClicked)
         self.addFamilyMemberButton.clicked.connect(self.addFamilyMemberClicked)
         self.changeColorFamilyMember.clicked.connect(
             self.onChangeColorFamilyMemberClicked)
@@ -110,6 +111,9 @@ padding: 6px;''')
 
     def toExcelButtonClicked(self):
         print('To Excel Button clicked')  # TODO
+
+    def onDeleteEventButtonClicked(self):
+        print("Delete Event Button Clicked")
 
     # page 2
     def addEvent(self):
