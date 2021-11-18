@@ -3,7 +3,7 @@ import sqlite3
 import sys
 
 import plyer
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets
 from PyQt5.QtCore import QTime, QDate
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 
@@ -11,11 +11,17 @@ from DialogsDesigns.addFamilyMemberDialog import addFamilyMemberDialog
 from DialogsDesigns.changeColorFamilyMemberDialog import changeColorFamilyMemberDialog
 from DialogsDesigns.design import Ui_MainWindow as mainWindowDesign
 from DialogsDesigns.removeFamilyMemberDialog import removeFamilyMemberDialog
+from os.path import exists
 
 
 class Window(QMainWindow, mainWindowDesign):
     def __init__(self):
         super().__init__()
+        if exists("events.db"):
+            self.con = sqlite3.connect("events.db")
+        else:
+            pass  # Сделать создание базы данных при её отсутствии TODO
+        self.cur = self.con.cursor()
         self.setupUI()
 
     def setupUI(self):
@@ -23,6 +29,8 @@ class Window(QMainWindow, mainWindowDesign):
         self.setMinimumSize(1024, 768)
 
         self.checkBoxes = []
+        self.typesOfRegular = {i[0]: i[1] for i in
+                               self.cur.execute('''select * from typesOfRegular''')}
         self.stackedWidget.setCurrentIndex(0)
         self.updateFamilyMembersCheckBoxes()
 
@@ -33,25 +41,18 @@ class Window(QMainWindow, mainWindowDesign):
         self.removeFamilyMember.clicked.connect(self.onRemoveFamilyMemberClicked)
         self.toExcelButton.clicked.connect(self.toExcelButtonClicked)
 
-        self.radioButton.clicked.connect(self.onRadioButtonClicked)
-        self.radioButton_2.clicked.connect(self.onRadioButtonClicked)
-        self.typesOfRegular = tuple(
-            map(lambda x: x[0], self.cursor.execute('''select title from typesOfRegular''')))
-        self.dateComboBox.addItems(self.typesOfRegular)
+        self.dateComboBox.addItems(self.typesOfRegular.values())
+        self.dateComboBox.setCurrentIndex(len(self.typesOfRegular) - 1)
         self.titleEdit.textChanged.connect(
             lambda: self.titleEdit.setText(self.titleEdit.text()[:19]))
-        self.cancelButton.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
         self.addButton.clicked.connect(self.addEvent)
-        self.radioButton.click()
+        self.cancelButton.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
 
     def updateDB(self):
-        self.connection = sqlite3.connect(
-            "events.db")  # Сделать создание базы данных при её отсутствии TODO
-        self.cursor = self.connection.cursor()
-        self.colors = list(self.cursor.execute('''select * from colors'''))
-        self.familyMembers = tuple(map(lambda x: x[1:], self.cursor.execute(
+        self.colors = list(self.cur.execute('''select * from colors'''))
+        self.familyMembers = tuple(map(lambda x: x[1:], self.cur.execute(
             '''select * from familyMembers''')))
-        self.events = tuple(self.cursor.execute('''select * from events'''))
+        self.events = tuple(self.cur.execute('''select * from events'''))
         self.calendarWidget.updateDB()
 
     # page 1
@@ -94,9 +95,11 @@ class Window(QMainWindow, mainWindowDesign):
             self.checkBoxes[-1].setText(memberName)
             self.checkBoxes[-1].setChecked(True)
             r, g, b = list(filter(lambda x: x[0] == colorID, self.colors))[0][1:]
-            self.checkBoxes[-1].setStyleSheet(f'''color: rgb({r}, {g}, {b});
-background-color: rgb({255 - r}, {255 - g}, {255 - b});
-border-style: outset;
+            new_css = f'''color: rgb(255, 255, 255);
+background-color: rgb({r}, {g}, {b});''' if r == g == b == 0 else \
+                f'''color: rgb(0, 0, 0);
+background-color: rgb({r}, {g}, {b});'''
+            self.checkBoxes[-1].setStyleSheet(new_css + '''border-style: outset;
 border-width: 2px;
 border-radius: 10px;
 border-color: rgb(0, 0, 0);
@@ -109,9 +112,6 @@ padding: 6px;''')
         print('To Excel Button clicked')  # TODO
 
     # page 2
-    def onRadioButtonClicked(self):
-        self.dateComboBox.setEnabled(False if self.sender() == self.radioButton else True)
-
     def addEvent(self):
         if self.titleEdit.text() == '':
             dlg = QMessageBox(self)
@@ -119,19 +119,25 @@ padding: 6px;''')
             dlg.setText('Не указан заголовок события!')
             dlg.exec()
         else:
-            f_m = tuple(self.connection.execute('''select name, id from familyMembers'''))
-            date = self.dateTimeEdit.date()
-            if self.radioButton.isChecked():
-                self.cursor.execute(
-                    f'''insert into events(familyMember, isEventRegular, title, text, date)
-values({list(filter(lambda x: x[0] == self.familyMembersComboBox.currentText(), f_m))
-                    [0][1]},0 , "{self.titleEdit.text()}", "{self.textEdit.text()}", 
-"{date.day()}.{date.month()}.{date.year()}")''')
-            self.connection.commit()
-            self.stackedWidget.setCurrentIndex(0)
-        # self.events = tuple(self.cursor.execute('''select * from events'''))
-        # print(self.events)
-        # pass  # Добавление события TODO
+            try:
+                f_m = tuple(self.cur.execute(f'''select id from familyMembers 
+                where name = "{self.familyMembersComboBox.currentText()}"'''))[0][0]
+                print(f_m)
+                t_o_r = tuple(self.cur.execute(f'''select id from typesOfRegular 
+                where title = "{self.dateComboBox.currentText()}"'''))[0][0]
+                print(t_o_r)
+                date = self.dateTimeEdit.date()
+                print(f'''insert into events values({f_m}, {t_o_r}, "{self.titleEdit.text()}", 
+                    "{self.textEdit.text()}", "{date.day()}.{date.month()}.{date.year()}")''')
+                self.cur.execute(
+                    f'''insert into events values({f_m}, {t_o_r}, "{self.titleEdit.text()}", 
+                    "{self.textEdit.text()}", "{date.day()}.{date.month()}.{date.year()}")''')
+                self.con.commit()
+                self.stackedWidget.setCurrentIndex(0)
+                self.calendarWidget.updateDB()
+                self.calendarWidget.repaint()
+            except BaseException as e:
+                print(e)
 
 
 def show_notification(title='Событие', message='Событие случилось'):

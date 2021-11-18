@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\DialogsDesigns\design.ui'
+# Form implementation generated from reading ui file 'design.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -47,8 +47,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9.addWidget(self.calendarWidget)
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum,
-                                           QtWidgets.QSizePolicy.Expanding)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem)
         self.addFamilyMemberButton = QtWidgets.QPushButton(self.page)
         font = QtGui.QFont()
@@ -59,13 +58,13 @@ class Ui_MainWindow(object):
         self.addFamilyMemberButton.setFont(font)
         self.addFamilyMemberButton.setAutoFillBackground(False)
         self.addFamilyMemberButton.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                                 "    border-style: outset;\n"
-                                                 "    border-width: 2px;\n"
-                                                 "    border-radius: 10px;\n"
-                                                 "    border-color: rgb(0, 0, 0);\n"
-                                                 "    font: bold 14px;\n"
-                                                 "    min-width: 10em;\n"
-                                                 "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.addFamilyMemberButton.setFlat(False)
         self.addFamilyMemberButton.setObjectName("addFamilyMemberButton")
         self.verticalLayout.addWidget(self.addFamilyMemberButton)
@@ -78,13 +77,13 @@ class Ui_MainWindow(object):
         self.changeColorFamilyMember.setFont(font)
         self.changeColorFamilyMember.setAutoFillBackground(False)
         self.changeColorFamilyMember.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                                   "    border-style: outset;\n"
-                                                   "    border-width: 2px;\n"
-                                                   "    border-radius: 10px;\n"
-                                                   "    border-color: rgb(0, 0, 0);\n"
-                                                   "    font: bold 14px;\n"
-                                                   "    min-width: 10em;\n"
-                                                   "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.changeColorFamilyMember.setFlat(True)
         self.changeColorFamilyMember.setObjectName("changeColorFamilyMember")
         self.verticalLayout.addWidget(self.changeColorFamilyMember)
@@ -97,18 +96,17 @@ class Ui_MainWindow(object):
         self.removeFamilyMember.setFont(font)
         self.removeFamilyMember.setAutoFillBackground(False)
         self.removeFamilyMember.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                              "    border-style: outset;\n"
-                                              "    border-width: 2px;\n"
-                                              "    border-radius: 10px;\n"
-                                              "    border-color: rgb(0, 0, 0);\n"
-                                              "    font: bold 14px;\n"
-                                              "    min-width: 10em;\n"
-                                              "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.removeFamilyMember.setFlat(True)
         self.removeFamilyMember.setObjectName("removeFamilyMember")
         self.verticalLayout.addWidget(self.removeFamilyMember)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum,
-                                            QtWidgets.QSizePolicy.Expanding)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem1)
         self.addEventButton = QtWidgets.QPushButton(self.page)
         font = QtGui.QFont()
@@ -119,16 +117,42 @@ class Ui_MainWindow(object):
         self.addEventButton.setFont(font)
         self.addEventButton.setAutoFillBackground(False)
         self.addEventButton.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                          "    border-style: outset;\n"
-                                          "    border-width: 2px;\n"
-                                          "    border-radius: 10px;\n"
-                                          "    border-color: rgb(0, 0, 0);\n"
-                                          "    font: bold 14px;\n"
-                                          "    min-width: 10em;\n"
-                                          "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.addEventButton.setFlat(True)
         self.addEventButton.setObjectName("addEventButton")
         self.verticalLayout.addWidget(self.addEventButton)
+        self.changeEventButton = QtWidgets.QPushButton(self.page)
+        self.changeEventButton.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
+        self.changeEventButton.setFlat(True)
+        self.changeEventButton.setObjectName("changeEventButton")
+        self.verticalLayout.addWidget(self.changeEventButton)
+        self.deleteEventButton = QtWidgets.QPushButton(self.page)
+        self.deleteEventButton.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
+        self.deleteEventButton.setFlat(True)
+        self.deleteEventButton.setObjectName("deleteEventButton")
+        self.verticalLayout.addWidget(self.deleteEventButton)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem2)
         self.toExcelButton = QtWidgets.QPushButton(self.page)
         font = QtGui.QFont()
         font.setPointSize(-1)
@@ -138,13 +162,13 @@ class Ui_MainWindow(object):
         self.toExcelButton.setFont(font)
         self.toExcelButton.setAutoFillBackground(False)
         self.toExcelButton.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                         "    border-style: outset;\n"
-                                         "    border-width: 2px;\n"
-                                         "    border-radius: 10px;\n"
-                                         "    border-color: rgb(0, 0, 0);\n"
-                                         "    font: bold 14px;\n"
-                                         "    min-width: 10em;\n"
-                                         "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.toExcelButton.setFlat(True)
         self.toExcelButton.setObjectName("toExcelButton")
         self.verticalLayout.addWidget(self.toExcelButton)
@@ -172,204 +196,159 @@ class Ui_MainWindow(object):
         self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
         self.verticalLayout_3.addWidget(self.label_4)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum,
-                                            QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_3.addItem(spacerItem2)
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                            QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem3)
-        self.radioButton = QtWidgets.QRadioButton(self.page_2)
-        self.radioButton.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                       "    border-style: outset;\n"
-                                       "    border-width: 2px;\n"
-                                       "    border-radius: 10px;\n"
-                                       "    border-color: rgb(0, 0, 0);\n"
-                                       "    font: bold 14px;\n"
-                                       "    min-width: 10em;\n"
-                                       "    padding: 6px;")
-        self.radioButton.setChecked(True)
-        self.radioButton.setObjectName("radioButton")
-        self.horizontalLayout_2.addWidget(self.radioButton)
-        self.radioButton_2 = QtWidgets.QRadioButton(self.page_2)
-        self.radioButton_2.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                         "    border-style: outset;\n"
-                                         "    border-width: 2px;\n"
-                                         "    border-radius: 10px;\n"
-                                         "    border-color: rgb(0, 0, 0);\n"
-                                         "    font: bold 14px;\n"
-                                         "    min-width: 10em;\n"
-                                         "    padding: 6px;")
-        self.radioButton_2.setObjectName("radioButton_2")
-        self.horizontalLayout_2.addWidget(self.radioButton_2)
-        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                            QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_2.addItem(spacerItem4)
-        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_3.addItem(spacerItem3)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                            QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem5)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem4)
         self.label_2 = QtWidgets.QLabel(self.page_2)
         self.label_2.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                   "    border-style: outset;\n"
-                                   "    border-width: 2px;\n"
-                                   "    border-radius: 10px;\n"
-                                   "    border-color: rgb(0, 0, 0);\n"
-                                   "    font: bold 14px;\n"
-                                   "    min-width: 10em;\n"
-                                   "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_3.addWidget(self.label_2)
         self.titleEdit = QtWidgets.QLineEdit(self.page_2)
         self.titleEdit.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                     "    border-style: outset;\n"
-                                     "    border-width: 2px;\n"
-                                     "    border-radius: 10px;\n"
-                                     "    border-color: rgb(0, 0, 0);\n"
-                                     "    font: bold 14px;\n"
-                                     "    min-width: 10em;\n"
-                                     "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.titleEdit.setObjectName("titleEdit")
         self.horizontalLayout_3.addWidget(self.titleEdit)
-        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                            QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem6)
+        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem5)
         self.horizontalLayout_3.setStretch(1, 1)
         self.horizontalLayout_3.setStretch(2, 3)
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                            QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_4.addItem(spacerItem7)
+        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem6)
         self.label = QtWidgets.QLabel(self.page_2)
         self.label.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                 "    border-style: outset;\n"
-                                 "    border-width: 2px;\n"
-                                 "    border-radius: 10px;\n"
-                                 "    border-color: rgb(0, 0, 0);\n"
-                                 "    font: bold 14px;\n"
-                                 "    min-width: 10em;\n"
-                                 "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.label.setObjectName("label")
         self.horizontalLayout_4.addWidget(self.label)
         self.textEdit = QtWidgets.QLineEdit(self.page_2)
         self.textEdit.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                    "    border-style: outset;\n"
-                                    "    border-width: 2px;\n"
-                                    "    border-radius: 10px;\n"
-                                    "    border-color: rgb(0, 0, 0);\n"
-                                    "    font: bold 14px;\n"
-                                    "    min-width: 10em;\n"
-                                    "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.textEdit.setObjectName("textEdit")
         self.horizontalLayout_4.addWidget(self.textEdit)
-        spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                            QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_4.addItem(spacerItem8)
+        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem7)
         self.horizontalLayout_4.setStretch(1, 1)
         self.horizontalLayout_4.setStretch(2, 3)
         self.verticalLayout_3.addLayout(self.horizontalLayout_4)
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                            QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem9)
+        spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem8)
         self.dateTimeEdit = QtWidgets.QDateTimeEdit(self.page_2)
         self.dateTimeEdit.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                        "    border-style: outset;\n"
-                                        "    border-width: 2px;\n"
-                                        "    border-radius: 10px;\n"
-                                        "    border-color: rgb(0, 0, 0);\n"
-                                        "    font: bold 14px;\n"
-                                        "    min-width: 10em;\n"
-                                        "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.dateTimeEdit.setObjectName("dateTimeEdit")
         self.horizontalLayout_5.addWidget(self.dateTimeEdit)
         self.dateComboBox = QtWidgets.QComboBox(self.page_2)
         self.dateComboBox.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                        "    border-style: outset;\n"
-                                        "    border-width: 2px;\n"
-                                        "    border-radius: 10px;\n"
-                                        "    border-color: rgb(0, 0, 0);\n"
-                                        "    font: bold 14px;\n"
-                                        "    min-width: 10em;\n"
-                                        "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.dateComboBox.setObjectName("dateComboBox")
         self.horizontalLayout_5.addWidget(self.dateComboBox)
-        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                             QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_5.addItem(spacerItem10)
+        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_5.addItem(spacerItem9)
         self.verticalLayout_3.addLayout(self.horizontalLayout_5)
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                             QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_7.addItem(spacerItem11)
+        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem10)
         self.label_3 = QtWidgets.QLabel(self.page_2)
         self.label_3.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                   "    border-style: outset;\n"
-                                   "    border-width: 2px;\n"
-                                   "    border-radius: 10px;\n"
-                                   "    border-color: rgb(0, 0, 0);\n"
-                                   "    font: bold 14px;\n"
-                                   "    min-width: 10em;\n"
-                                   "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.label_3.setObjectName("label_3")
         self.horizontalLayout_7.addWidget(self.label_3)
         self.familyMembersComboBox = QtWidgets.QComboBox(self.page_2)
         self.familyMembersComboBox.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                                 "    border-style: outset;\n"
-                                                 "    border-width: 2px;\n"
-                                                 "    border-radius: 10px;\n"
-                                                 "    border-color: rgb(0, 0, 0);\n"
-                                                 "    font: bold 14px;\n"
-                                                 "    min-width: 10em;\n"
-                                                 "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.familyMembersComboBox.setObjectName("familyMembersComboBox")
         self.horizontalLayout_7.addWidget(self.familyMembersComboBox)
-        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                             QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_7.addItem(spacerItem12)
+        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_7.addItem(spacerItem11)
         self.verticalLayout_3.addLayout(self.horizontalLayout_7)
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                             QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_8.addItem(spacerItem13)
+        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_8.addItem(spacerItem12)
         self.addButton = QtWidgets.QPushButton(self.page_2)
         self.addButton.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                     "    border-style: outset;\n"
-                                     "    border-width: 2px;\n"
-                                     "    border-radius: 10px;\n"
-                                     "    border-color: rgb(0, 0, 0);\n"
-                                     "    font: bold 14px;\n"
-                                     "    min-width: 10em;\n"
-                                     "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.addButton.setObjectName("addButton")
         self.horizontalLayout_8.addWidget(self.addButton)
         self.cancelButton = QtWidgets.QPushButton(self.page_2)
         self.cancelButton.setStyleSheet("    background-color: rgb(156, 231, 255);\n"
-                                        "    border-style: outset;\n"
-                                        "    border-width: 2px;\n"
-                                        "    border-radius: 10px;\n"
-                                        "    border-color: rgb(0, 0, 0);\n"
-                                        "    font: bold 14px;\n"
-                                        "    min-width: 10em;\n"
-                                        "    padding: 6px;")
+"    border-style: outset;\n"
+"    border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;")
         self.cancelButton.setObjectName("cancelButton")
         self.horizontalLayout_8.addWidget(self.cancelButton)
-        spacerItem14 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding,
-                                             QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_8.addItem(spacerItem14)
+        spacerItem13 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_8.addItem(spacerItem13)
         self.verticalLayout_3.addLayout(self.horizontalLayout_8)
-        spacerItem15 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum,
-                                             QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_3.addItem(spacerItem15)
-        self.verticalLayout_3.setStretch(8, 2)
+        spacerItem14 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_3.addItem(spacerItem14)
         self.verticalLayout_2.addLayout(self.verticalLayout_3)
         self.stackedWidget.addWidget(self.page_2)
         self.horizontalLayout.addWidget(self.stackedWidget)
@@ -386,10 +365,10 @@ class Ui_MainWindow(object):
         self.changeColorFamilyMember.setText(_translate("MainWindow", "Изменить цвет члена семьи"))
         self.removeFamilyMember.setText(_translate("MainWindow", "Удалить члена семьи"))
         self.addEventButton.setText(_translate("MainWindow", "Добавить событие"))
+        self.changeEventButton.setText(_translate("MainWindow", "Изменить события"))
+        self.deleteEventButton.setText(_translate("MainWindow", "Удалить события"))
         self.toExcelButton.setText(_translate("MainWindow", "Преобразовать в excel"))
         self.label_4.setText(_translate("MainWindow", "Добавить событие"))
-        self.radioButton.setText(_translate("MainWindow", "Одноразовое"))
-        self.radioButton_2.setText(_translate("MainWindow", "Регулярное"))
         self.label_2.setText(_translate("MainWindow", "Загаловок события"))
         self.label.setText(_translate("MainWindow", "Текст события"))
         self.label_3.setText(_translate("MainWindow", "К какому члену семьи событие относится"))

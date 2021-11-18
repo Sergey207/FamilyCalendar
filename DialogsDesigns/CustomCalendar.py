@@ -24,17 +24,18 @@ class CustomCalendar(QCalendarWidget):
         self.colors = {i[0]: (i[1], i[2], i[3]) for i in self.cur.execute('select * from colors')}
         self.familyMembers = {i[0]: self.colors[i[1]] for i in
                               self.cur.execute('select id, color from familyMembers')}
-        self.irregularEvents = tuple([
-            [self.familyMembers[i[0]], i[1], i[2],
-             QDate(int(i[3].split('.')[2]), int(i[3].split('.')[1]),
-                   int(i[3].split('.')[0]))] for i in self.cur.execute(
-                '''select familyMember, title, text, date from events where not isEventRegular''')])
-        print(self.irregularEvents)
+        self.events = tuple((self.familyMembers[i[0]], i[1], i[2],
+                             QDate(int(i[4].split('.')[2]), int(i[4].split('.')[1]),
+                                   int(i[4].split('.')[0]))) for i in
+                            self.cur.execute('''select * from events'''))
+        print(self.events)
 
     def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
         new_line_simbols = ''
         try:
-            if date.day() == datetime.datetime.now().date().day:
+            if date.day() == datetime.datetime.now().date().day and \
+                    date.month() == datetime.datetime.now().month and \
+                    date.year() == datetime.datetime.now().year:
                 painter.setPen(QColor(0, 255, 0))
             elif self.monthShown() == date.month():
                 painter.setPen(self.blackColor)
@@ -44,10 +45,11 @@ class CustomCalendar(QCalendarWidget):
             painter.drawText(rect, 1, f"{new_line_simbols}{date.day()}")
             new_line_simbols += '\n\n'
 
-            for event in filter(lambda x: x[-1] == date, self.irregularEvents):
-                painter.setPen(QColor(*event[0]))
+            for color, t_o_r, title in map(lambda x: x[:-1],
+                                           filter(lambda x: x[-1] == date, self.events)):
+                painter.setPen(QColor(*color))
                 painter.setFont(self.littleFont)
-                painter.drawText(rect, 1, f'{new_line_simbols}{event[1]}')
+                painter.drawText(rect, 1, f'{new_line_simbols}{title}')
                 new_line_simbols += '\n'
         except BaseException as e:
             print(e)
