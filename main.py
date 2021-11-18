@@ -117,7 +117,8 @@ padding: 6px;''')
             self.verticalLayout.insertWidget(0, self.checkBoxes[-1])
 
     def toExcelButtonClicked(self):
-        month_array = get_month_array(self.calendarWidget.yearShown(), self.calendarWidget.monthShown())
+        month_array = get_month_array(self.calendarWidget.yearShown(),
+                                      self.calendarWidget.monthShown())
         month = self.calendarWidget.monthShown()
 
         month_title = {1: "Январь", 2: "Февраль", 3: "Март", 4: "Апрель", 5: "Май", 6: "Июнь",
@@ -148,13 +149,13 @@ padding: 6px;''')
 
             for i, line in enumerate(month_array):
                 for j, element in enumerate(line):
-                    cell = ws[f'{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[j]}{i + 2}']
                     final_text = str(element) if element else ''
                     for title, date in events:
                         if date.split('.')[0] == str(element) and date.split('.')[1] == str(
                                 month):
                             final_text += f"\n{title}"
                     ws[f'{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[j]}{i + 2}'] = final_text
+                    cell = ws[f'{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[j]}{i + 2}']
                     cell.alignment = Alignment(wrapText=True, horizontal='left', vertical='top')
                     cell.border = thin_border
                     cell.font = font
