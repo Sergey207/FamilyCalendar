@@ -1,18 +1,24 @@
+import calendar
 import datetime
+import pprint
 import sqlite3
 import sys
+from os.path import exists
 
+import numpy as np
+import openpyxl
 import plyer
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QTime, QDate
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
+from openpyxl.styles import Alignment, Border, Side, Font
+from openpyxl.worksheet.page import PrintPageSetup
 
-from DialogsDesigns.deleteEventDialog import deleteEventDialog
 from DialogsDesigns.addFamilyMemberDialog import addFamilyMemberDialog
 from DialogsDesigns.changeColorFamilyMemberDialog import changeColorFamilyMemberDialog
+from DialogsDesigns.deleteEventDialog import deleteEventDialog
 from DialogsDesigns.design import Ui_MainWindow as mainWindowDesign
 from DialogsDesigns.removeFamilyMemberDialog import removeFamilyMemberDialog
-from os.path import exists
 
 
 class Window(QMainWindow, mainWindowDesign):
@@ -109,7 +115,52 @@ padding: 6px;''')
             self.verticalLayout.insertWidget(0, self.checkBoxes[-1])
 
     def toExcelButtonClicked(self):
-        print('To Excel Button clicked')  # TODO
+        month_array = get_month_array(self.calendarWidget.yearShown(), self.calendarWidget.monthShown())
+        month = self.calendarWidget.monthShown()
+
+        month_title = {1: "Январь", 2: "Февраль", 3: "Март", 4: "Апрель", 5: "Май", 6: "Июнь",
+                       7: "Июль", 8: "Август", 9: "Сентябрь", 10: "Октябрь", 11: "Ноябрь",
+                       12: "Декабрь"}[month]
+        events = tuple(
+            sqlite3.connect("events.db").cursor().execute('''select title, date from events'''))
+        try:
+            wb = openpyxl.Workbook()
+            ws = wb.active
+            thin_border = Border(left=Side(style='thin'),
+                                 right=Side(style='thin'),
+                                 top=Side(style='thin'),
+                                 bottom=Side(style='thin'))
+            font = Font(size=8)
+            for i, element in enumerate("ABCDEFG"):
+                ws.column_dimensions[element].width = 20
+            for i in range(len(month_array) + 1):
+                ws.row_dimensions[i + 1].height = 40
+            for i, element in enumerate(
+                    ("Понедельник", "Вторник", "Среда", "Четверг", "Пятница",
+                     "Суббота", "Воскресенье")):
+                ws[f'{"ABCDEFG"[i]}1'] = element
+                ws[f'{"ABCDEFG"[i]}1'].border = thin_border
+                ws[f'{"ABCDEFG"[i]}1'].font = font
+                ws[f'{"ABCDEFG"[i]}1'].alignment = Alignment(horizontal='center',
+                                                             vertical='center')
+
+            for i, line in enumerate(month_array):
+                for j, element in enumerate(line):
+                    cell = ws[f'{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[j]}{i + 2}']
+                    final_text = str(element) if element else ''
+                    for title, date in events:
+                        if date.split('.')[0] == str(element) and date.split('.')[1] == str(
+                                month):
+                            final_text += f"\n{title}"
+                    ws[f'{"ABCDEFGHIJKLMNOPQRSTUVWXYZ"[j]}{i + 2}'] = final_text
+                    cell.alignment = Alignment(wrapText=True, horizontal='left', vertical='top')
+                    cell.border = thin_border
+                    cell.font = font
+            ws_properties = ws.sheet_properties
+            ws.page_setup = PrintPageSetup(orientation='landscape')
+            wb.save(f"{month_title}.xlsx")
+        except BaseException as e:
+            print(e)
 
     def onDeleteEventButtonClicked(self):
         try:
@@ -144,6 +195,17 @@ padding: 6px;''')
                 self.calendarWidget.repaint()
             except BaseException as e:
                 print(e)
+
+
+def get_month_array(year, month):
+    try:
+        new_calendar = calendar.Calendar()
+        month = list(new_calendar.itermonthdays(year, month))
+        month_array = np.array(list(month))
+        month_array = month_array.reshape(len(month_array) // 7, 7)
+        return list(map(lambda x: list(x), filter(lambda x: any(x), month_array)))
+    except BaseException as e:
+        print(e)
 
 
 def show_notification(title='Событие', message='Событие случилось'):

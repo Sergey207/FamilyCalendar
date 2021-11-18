@@ -26,10 +26,12 @@ class CustomCalendar(QCalendarWidget):
                               self.cur.execute('select id, color from familyMembers')}
         self.events = []
         self.events.append(tuple((self.familyMembers[i[0]], i[1], i[2],
-                             QDate(int(i[4].split('.')[2]), int(i[4].split('.')[1]),
-                                   int(i[4].split('.')[0]))) for i in
-                            self.cur.execute('''select * from events where typeOfRegular=10''')))
-        print(self.events)
+                                  QDate(int(i[4].split('.')[2]), int(i[4].split('.')[1]),
+                                        int(i[4].split('.')[0]))) for i in
+                                 self.cur.execute(
+                                     '''select * from events where typeOfRegular=(
+                                     select id from typesOfRegular
+                                     where title="Не повторять")''')))
 
     def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
         new_line_simbols = ''
@@ -47,7 +49,7 @@ class CustomCalendar(QCalendarWidget):
             new_line_simbols += '\n\n'
 
             for color, t_o_r, title in set(map(lambda x: x[:-1],
-                                           filter(lambda x: x[-1] == date, self.events))):
+                                               filter(lambda x: x[-1] == date, self.events))):
                 parts_of_title = []
                 while True:
                     if len(title) <= 19:
