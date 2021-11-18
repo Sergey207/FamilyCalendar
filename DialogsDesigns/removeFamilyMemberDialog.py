@@ -18,6 +18,11 @@ class removeFamilyMemberDialog(QDialog, Ui_Dialog):
 
     def onRemoveMemberClicked(self):
         try:
+            id = tuple(self.cur.execute(
+                f'select id from familyMembers where name="{self.comboBox.currentText()}"'))[0][0]
+            self.cur.execute(
+                f'delete from events where familyMember = {id}')
+            self.con.commit()
             self.cur.execute(
                 f'delete from familyMembers where name = "{self.comboBox.currentText()}"')
             self.con.commit()

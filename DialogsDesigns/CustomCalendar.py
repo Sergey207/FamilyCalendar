@@ -24,14 +24,17 @@ class CustomCalendar(QCalendarWidget):
         self.colors = {i[0]: (i[1], i[2], i[3]) for i in self.cur.execute('select * from colors')}
         self.familyMembers = {i[0]: self.colors[i[1]] for i in
                               self.cur.execute('select id, color from familyMembers')}
+
         self.events = []
-        self.events.append(tuple((self.familyMembers[i[0]], i[1], i[2],
-                                  QDate(int(i[4].split('.')[2]), int(i[4].split('.')[1]),
-                                        int(i[4].split('.')[0]))) for i in
-                                 self.cur.execute(
-                                     '''select * from events where typeOfRegular=(
+        for i in self.cur.execute('''select * from events where typeOfRegular=(
                                      select id from typesOfRegular
-                                     where title="Не повторять")''')))
+                                     where title="Не повторять")'''):
+            self.events.append([])
+            self.events[-1].append(self.familyMembers[i[0]])
+            self.events[-1].append(i[1])
+            self.events[-1].append(i[2])
+            self.events[-1].append(QDate(int(i[4].split('.')[2]), int(i[4].split('.')[1]),
+                                         int(i[4].split('.')[0])))
 
     def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
         new_line_simbols = ''
@@ -48,7 +51,7 @@ class CustomCalendar(QCalendarWidget):
             painter.drawText(rect, 1, f"{new_line_simbols}{date.day()}")
             new_line_simbols += '\n\n'
 
-            for color, t_o_r, title in set(map(lambda x: x[:-1],
+            for color, t_o_r, title in tuple(map(lambda x: x[:-1],
                                                filter(lambda x: x[-1] == date, self.events))):
                 parts_of_title = []
                 while True:

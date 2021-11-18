@@ -1,6 +1,5 @@
 import calendar
 import datetime
-import pprint
 import sqlite3
 import sys
 from os.path import exists
@@ -75,9 +74,12 @@ class Window(QMainWindow, mainWindowDesign):
             self.updateFamilyMembersCheckBoxes()
 
     def onRemoveFamilyMemberClicked(self):
-        dlg = removeFamilyMemberDialog()
-        dlg.exec()
-        self.updateFamilyMembersCheckBoxes()
+        try:
+            dlg = removeFamilyMemberDialog()
+            dlg.exec()
+            self.updateFamilyMembersCheckBoxes()
+        except BaseException as e:
+            print(e)
 
     def onAddEventButtonClicked(self):
         try:
