@@ -52,7 +52,7 @@ class CustomCalendar(QCalendarWidget):
             new_line_simbols += '\n\n'
 
             for color, t_o_r, title in tuple(map(lambda x: x[:-1],
-                                               filter(lambda x: x[-1] == date, self.events))):
+                                                 filter(lambda x: x[-1] == date, self.events))):
                 parts_of_title = []
                 while True:
                     if len(title) <= 19:
