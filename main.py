@@ -17,6 +17,7 @@ from DialogsDesigns.addFamilyMemberDialog import addFamilyMemberDialog
 from DialogsDesigns.changeColorFamilyMemberDialog import changeColorFamilyMemberDialog
 from DialogsDesigns.deleteEventDialog import deleteEventDialog
 from DialogsDesigns.design import Ui_MainWindow as mainWindowDesign
+# from DialogsDesigns.des import Ui_MainWindow as mainWindowDesign
 from DialogsDesigns.removeFamilyMemberDialog import removeFamilyMemberDialog
 
 
@@ -33,7 +34,6 @@ class Window(QMainWindow, mainWindowDesign):
     def setupUI(self):
         self.setupUi(self)
         self.setMinimumSize(1024, 768)
-
         self.checkBoxes = []
         self.typesOfRegular = {i[0]: i[1] for i in
                                self.cur.execute('''select * from typesOfRegular''')}

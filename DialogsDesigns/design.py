@@ -359,6 +359,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(0)
+        self.calendarWidget.currentPageChanged['int', 'int'].connect(
+            self.calendarWidget.repaint)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
