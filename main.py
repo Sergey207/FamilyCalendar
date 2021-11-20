@@ -194,7 +194,6 @@ padding: 6px;''')
                     "{self.textEdit.text()}", "{date.day()}.{date.month()}.{date.year()}")''')
                 self.con.commit()
                 self.stackedWidget.setCurrentIndex(0)
-                self.calendarWidget.updateDB()
                 self.calendarWidget.repaint()
             except BaseException as e:
                 print(e)

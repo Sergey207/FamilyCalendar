@@ -1,9 +1,9 @@
 import datetime
-from pprint import pprint
 import sqlite3
+from pprint import pprint
 
 from PyQt5.QtCore import QRect, QDate
-from PyQt5.QtGui import QColor, QPainter, QFont, QBrush, QPen
+from PyQt5.QtGui import QColor, QPainter, QFont, QPen
 from PyQt5.QtWidgets import QCalendarWidget
 
 
@@ -23,6 +23,7 @@ class CustomCalendar(QCalendarWidget):
 
     def repaint(self):
         self.updateDB()
+        self.todayRect = None
         QCalendarWidget.repaint(self)
 
     def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
@@ -43,11 +44,12 @@ class CustomCalendar(QCalendarWidget):
 
             for color, t_o_r, title in tuple(map(lambda x: x[:-1],
                                                  filter(lambda x: x[-1] == date, self.events))):
+                symbolsPerLine = rect.width() // 6
                 parts_of_title = []
-                while len(title) >= 19:
-                    parts_of_title.append(title[:19])
-                    title = title[19:]
-                parts_of_title.append(title)
+                while len(str(title)) >= symbolsPerLine:
+                    parts_of_title.append(str(title[:symbolsPerLine]))
+                    title = title[symbolsPerLine:]
+                parts_of_title.append(str(title))
                 title = '\n'.join(parts_of_title)
 
                 painter.setPen(QColor(*color))
@@ -58,7 +60,7 @@ class CustomCalendar(QCalendarWidget):
                 painter.setPen(QPen(QColor(255, 0, 0), 2))
                 painter.drawRect(self.todayRect)
         except BaseException as e:
-            print(e)
+            print('PaintCell ->', e)
 
     def updateDB(self):
         self.colors = {i[0]: (i[1], i[2], i[3]) for i in self.cur.execute('select * from colors')}
@@ -67,31 +69,27 @@ class CustomCalendar(QCalendarWidget):
         self.familyMembers = {i[0]: self.colors[i[1]] for i in
                               self.cur.execute('select id, color from familyMembers')}
 
-        pprint(self.typesOfRegular)
         self.events = []
         for idOfType, title in self.typesOfRegular.items():
             for i in self.cur.execute(f'''select * from events where typeOfRegular = {idOfType}'''):
                 date = QDate(int(i[4].split('.')[2]), int(i[4].split('.')[1]),
                              int(i[4].split('.')[0]))
-                minMonthNumber = self.monthShown() - 1 if self.monthShown() > 1 else 12
-                maxMonthNumber = self.monthShown() + 1 if self.monthShown() < 12 else 1
-                if i[1] == 1:
-                    for monthNumber in (minMonthNumber, self.monthShown(), maxMonthNumber):
-                        for dayNumber in range(1, 32):
-                            if self.monthShown() <= 1 and monthNumber == 12:
-                                year = self.yearShown() - 1
-                            elif self.monthShown() >= 12 and monthNumber == 1:
-                                year = self.yearShown() + 1
-                            else:
-                                year = self.yearShown()
-                            if QDate(year, monthNumber, dayNumber) >= date:
-                                self.events.append((self.familyMembers[i[0]], i[1], i[2],
-                                                    QDate(year, monthNumber, dayNumber)))
-                elif i[1] == 2:
-                    while date.month() in (minMonthNumber, self.monthShown(), maxMonthNumber):
-                        self.events.append((self.familyMembers[i[0]], i[1], i[2],
-                                            date))
-                        date.addDays(2)
-                elif i[1] == 10:
-                    self.events.append((self.familyMembers[i[0]], i[1], i[2],
-                                        date))
+                match i[1]:
+                    case 1 | 2 | 3 | 4 | 5 | 6 | 7:
+                        while (date.year(), date.month()) <= (
+                                self.yearShown() + 1, self.monthShown() + 2):
+                            self.events.append((self.familyMembers[i[0]], i[1], i[2], date))
+                            date = date.addDays(i[1])
+                    case 8:
+                        while (date.year(), date.month()) <= (
+                                self.yearShown() + 1, self.monthShown() + 2):
+                            self.events.append((self.familyMembers[i[0]], i[1], i[2], date))
+                            date = date.addMonths(1)
+                            print(date)
+                    case 9:
+                        while (date.year(), date.month()) <= (
+                                self.yearShown() + 1, self.monthShown() + 2):
+                            self.events.append((self.familyMembers[i[0]], i[1], i[2], date))
+                            date = date.addYears(1)
+                    case 10:
+                        self.events.append((self.familyMembers[i[0]], i[1], i[2], date))
