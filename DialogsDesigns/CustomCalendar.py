@@ -1,4 +1,5 @@
 import datetime
+import pprint
 import sqlite3
 
 from PyQt5.QtCore import QRect, QDate
@@ -26,19 +27,29 @@ class CustomCalendar(QCalendarWidget):
 
     def updateDB(self):
         self.colors = {i[0]: (i[1], i[2], i[3]) for i in self.cur.execute('select * from colors')}
+        self.typesOfRegular = {i[0]: i[1] for i in
+                               self.cur.execute('select id, title from typesOfRegular')}
         self.familyMembers = {i[0]: self.colors[i[1]] for i in
                               self.cur.execute('select id, color from familyMembers')}
 
+        pprint.pprint(self.typesOfRegular)
         self.events = []
-        for i in self.cur.execute('''select * from events where typeOfRegular=(
-                                     select id from typesOfRegular
-                                     where title="Не повторять")'''):
-            self.events.append([])
-            self.events[-1].append(self.familyMembers[i[0]])
-            self.events[-1].append(i[1])
-            self.events[-1].append(i[2])
-            self.events[-1].append(QDate(int(i[4].split('.')[2]), int(i[4].split('.')[1]),
-                                         int(i[4].split('.')[0])))
+        for idOfType, title in self.typesOfRegular.items():
+            for i in self.cur.execute(f'''select * from events where typeOfRegular = {idOfType}'''):
+                date = QDate(int(i[4].split('.')[2]), int(i[4].split('.')[1]),
+                             int(i[4].split('.')[0]))
+                self.events.append((self.familyMembers[i[0]], i[1], i[2],
+                                    date))
+                if i[1] == 1:
+                    minMonthNumber = self.monthShown() - 1 if self.monthShown() > 1 else 12
+                    maxMonthNumber = self.monthShown() + 1 if self.monthShown() < 12 else 1
+                    for monthNumber in (minMonthNumber, self.monthShown(), maxMonthNumber):
+                        for dayNumber in range(1, 32):
+                            print(monthNumber, '-', dayNumber, sep='')
+                            if QDate(int(i[4].split('.')[2]), monthNumber, dayNumber) >= date:
+                                self.events.append((self.familyMembers[i[0]], i[1], i[2],
+                                                    QDate(int(i[4].split('.')[2]), monthNumber,
+                                                          dayNumber)))
         print(self.events)
 
     def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
