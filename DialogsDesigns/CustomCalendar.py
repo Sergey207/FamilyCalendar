@@ -1,6 +1,5 @@
 import datetime
 import sqlite3
-from pprint import pprint
 
 from PyQt5.QtCore import QRect, QDate
 from PyQt5.QtGui import QColor, QPainter, QFont, QPen
@@ -29,7 +28,6 @@ class CustomCalendar(QCalendarWidget):
     def paintCell(self, painter: QPainter, rect: QRect, date: QDate):
         new_line_simbols = ''
         try:
-
             if date.day() == datetime.datetime.now().date().day and \
                     date.month() == datetime.datetime.now().month and \
                     date.year() == datetime.datetime.now().year:
