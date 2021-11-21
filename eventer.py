@@ -39,11 +39,12 @@ def getEvents():
                 case 10:
                     events.append((familyMembers[i[0]], i[1], i[2], i[3], date, timeOfEvent))
     qdate_now = QDate(date_now.year, date_now.month, date_now.day)
-    timeNow = datetime.datetime.now().time()
-    return tuple(filter(lambda x: x[4] == qdate_now and x[5] >= timeNow, events))
+    return tuple(filter(lambda x: x[4] == qdate_now, events))
 
 
 def show_notification(title='Событие', message='Событие случилось'):
+    if message == '':
+        message = 'Событие случилось'
     plyer.notification.notify(message=message, app_name='Семейный календарь',
                               app_icon='Photos/bell.ico', title=title)
 
@@ -53,6 +54,6 @@ if __name__ == '__main__':
         events_today = getEvents()
         time_now = datetime.datetime.now().time()
         for event in events_today:
-            if event[-1].hour <= time_now.hour and event[-1].minute <= time_now.minute:
+            if event[-1].hour == time_now.hour and event[-1].minute == time_now.minute:
                 show_notification(event[2], event[3])
         time.sleep(60)
