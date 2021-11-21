@@ -6,7 +6,6 @@ from os.path import exists
 
 import numpy as np
 import openpyxl
-import plyer
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import QTime, QDate
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
@@ -17,7 +16,6 @@ from DialogsDesigns.addFamilyMemberDialog import addFamilyMemberDialog
 from DialogsDesigns.changeColorFamilyMemberDialog import changeColorFamilyMemberDialog
 from DialogsDesigns.deleteEventDialog import deleteEventDialog
 from DialogsDesigns.design import Ui_MainWindow as mainWindowDesign
-# from DialogsDesigns.des import Ui_MainWindow as mainWindowDesign
 from DialogsDesigns.removeFamilyMemberDialog import removeFamilyMemberDialog
 
 
@@ -189,9 +187,11 @@ padding: 6px;''')
                 t_o_r = tuple(self.cur.execute(f'''select id from typesOfRegular 
                 where title = "{self.dateComboBox.currentText()}"'''))[0][0]
                 date = self.dateTimeEdit.date()
+                time = self.dateTimeEdit.time()
                 self.cur.execute(
                     f'''insert into events values({f_m}, {t_o_r}, "{self.titleEdit.text()}", 
-                    "{self.textEdit.text()}", "{date.day()}.{date.month()}.{date.year()}")''')
+                    "{self.textEdit.text()}", "{date.day()}.{date.month()}.{date.year()}",
+                    "{time.hour()}:{time.minute()}")''')
                 self.con.commit()
                 self.stackedWidget.setCurrentIndex(0)
                 self.calendarWidget.repaint()
@@ -208,11 +208,6 @@ def get_month_array(year, month):
         return list(map(lambda x: list(x), filter(lambda x: any(x), month_array)))
     except BaseException as e:
         print(e)
-
-
-def show_notification(title='Событие', message='Событие случилось'):
-    plyer.notification.notify(message=message, app_name='Семейный календарь',
-                              app_icon='Photos/bell.ico', title=title)
 
 
 if __name__ == '__main__':

@@ -61,11 +61,10 @@ class CustomCalendar(QCalendarWidget):
             print('PaintCell ->', e)
 
     def updateDB(self):
-        self.colors = {i[0]: (i[1], i[2], i[3]) for i in self.cur.execute('select * from colors')}
-        self.typesOfRegular = {i[0]: i[1] for i in
-                               self.cur.execute('select id, title from typesOfRegular')}
+        self.colors = {i[0]: i[1:] for i in self.cur.execute('select * from colors')}
         self.familyMembers = {i[0]: self.colors[i[1]] for i in
                               self.cur.execute('select id, color from familyMembers')}
+        self.typesOfRegular = {i[0]: i[1] for i in self.cur.execute('select * from typesOfRegular')}
 
         self.events = []
         for idOfType, title in self.typesOfRegular.items():
@@ -83,7 +82,6 @@ class CustomCalendar(QCalendarWidget):
                                 self.yearShown() + 1, self.monthShown() + 2):
                             self.events.append((self.familyMembers[i[0]], i[1], i[2], date))
                             date = date.addMonths(1)
-                            print(date)
                     case 9:
                         while (date.year(), date.month()) <= (
                                 self.yearShown() + 1, self.monthShown() + 2):
