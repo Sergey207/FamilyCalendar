@@ -2,7 +2,6 @@ import calendar
 import datetime
 import sqlite3
 import sys
-from os.path import exists
 
 import numpy as np
 import openpyxl
@@ -22,10 +21,7 @@ from DialogsDesigns.removeFamilyMemberDialog import removeFamilyMemberDialog
 class Window(QMainWindow, mainWindowDesign):
     def __init__(self):
         super().__init__()
-        if exists("events.db"):
-            self.con = sqlite3.connect("events.db")
-        else:
-            pass  # Сделать создание базы данных при её отсутствии TODO
+        self.con = sqlite3.connect("events.db")
         self.cur = self.con.cursor()
         self.setupUI()
 
@@ -50,6 +46,7 @@ class Window(QMainWindow, mainWindowDesign):
         self.dateComboBox.setCurrentIndex(len(self.typesOfRegular) - 1)
         self.addButton.clicked.connect(self.addEvent)
         self.cancelButton.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
+        self.calendarWidget.updateCheckboxes(self.checkBoxes)
 
     def updateDB(self):
         self.colors = list(self.cur.execute('''select * from colors'''))
@@ -98,6 +95,8 @@ class Window(QMainWindow, mainWindowDesign):
         self.checkBoxes.clear()
         for (memberName, colorID) in sorted(self.familyMembers, key=lambda x: x[0]):
             self.checkBoxes.append(QtWidgets.QCheckBox(self.centralwidget))
+            self.checkBoxes[-1].stateChanged.connect(
+                lambda: self.calendarWidget.updateCheckboxes(self.checkBoxes))
             self.checkBoxes[-1].setText(memberName)
             self.checkBoxes[-1].setChecked(True)
             r, g, b = list(filter(lambda x: x[0] == colorID, self.colors))[0][1:]
@@ -113,6 +112,8 @@ font: bold 14px;
 min-width: 10em;
 padding: 6px;''')
             self.verticalLayout.insertWidget(0, self.checkBoxes[-1])
+
+        self.calendarWidget.updateDB(self.checkBoxes)
 
     def toExcelButtonClicked(self):
         month_array = get_month_array(self.calendarWidget.yearShown(),
